@@ -15,7 +15,7 @@ export default function Testimoni() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 100}>
-              <figure className="flex h-full flex-col rounded-[22px] border border-slate-100 bg-white p-6 shadow-sm">
+              <figure className="flex h-full flex-col rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
                 <Quote className="h-7 w-7 text-emerald-200" />
                 <div className="mt-2 flex gap-0.5" aria-label="Rating 5 dari 5">
                   {Array.from({ length: 5 }).map((_, s) => (

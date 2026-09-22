@@ -84,4 +84,36 @@ body {
   html {
     scroll-behavior: auto;
   }
+  .animate-float,
+  .animate-float-slow {
+    animation: none;
+  }
+}
+
+/* Pola titik halus untuk aksen modern */
+.bg-dots {
+  background-image: radial-gradient(circle, rgba(5, 150, 105, 0.16) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+.bg-dots-light {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.28) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+}
+
+/* Lencana melayang di hero */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: float 7s ease-in-out infinite;
 }

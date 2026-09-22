@@ -15,7 +15,7 @@ export default function Dokter() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {doctors.map((d, i) => (
             <Reveal key={d.name} delay={(i % 4) * 80}>
-              <article className="overflow-hidden rounded-[22px] border border-slate-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+              <article className="overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
                 <img src={d.photo} alt={d.name} className="h-64 w-full object-cover" loading="lazy" />
                 <div className="p-5">
                   <h3 className="text-sm font-extrabold text-slate-900">{d.name}</h3>

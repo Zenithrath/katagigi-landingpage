@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
-import { nav, site } from "@/data/content";
+import { Mail, Phone, MapPin, ArrowRight, CheckCircle2, Clock } from "lucide-react";
+import { nav, services, site } from "@/data/content";
 
 function FacebookIcon() {
   return (
@@ -35,112 +35,161 @@ export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
 
   return (
-    <footer className="bg-slate-950 text-slate-300">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4">
-        <div>
-          <div className="flex items-center gap-2.5">
-            <img src="/logo.svg" alt="KataGigi" className="h-9 w-9 rounded-xl bg-white p-0.5" />
-            <span className="text-base font-extrabold text-white">{site.name}</span>
+    <footer className="relative overflow-hidden bg-white">
+      <div className="h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent" />
+
+      <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6">
+        {/* Baris atas: brand + newsletter */}
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div>
+            <a href="#beranda" className="flex items-center gap-2.5">
+              <img
+                src="/logo.svg"
+                alt="KataGigi"
+                className="h-10 w-10 rounded-2xl bg-white p-0.5 ring-1 ring-emerald-100"
+              />
+              <span className="leading-tight">
+                <span className="block text-lg font-extrabold tracking-tight text-slate-900">
+                  {site.name}
+                </span>
+                <span className="block text-xs font-semibold text-emerald-700">
+                  {site.tagline}
+                </span>
+              </span>
+            </a>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-500">
+              Klinik gigi modern untuk keluarga — 6 poli spesialis, dokter teliti,
+              harga transparan sesuai pricelist klinik.
+            </p>
+            <div className="mt-5 flex gap-2">
+              {[
+                { icon: <FacebookIcon />, label: "Facebook" },
+                { icon: <InstagramIcon />, label: "Instagram" },
+                { icon: <TiktokIcon />, label: "TikTok" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href="#beranda"
+                  aria-label={s.label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-all hover:bg-emerald-600 hover:text-white"
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-slate-400">
-            Klinik gigi modern untuk keluarga — perawatan lengkap, dokter teliti, harga
-            transparan.
-          </p>
-          <div className="mt-5 flex gap-2">
-            {[
-              { icon: <FacebookIcon />, label: "Facebook" },
-              { icon: <InstagramIcon />, label: "Instagram" },
-              { icon: <TiktokIcon />, label: "TikTok" },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href="#beranda"
-                aria-label={s.label}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-emerald-600"
-              >
-                {s.icon}
-              </a>
-            ))}
+
+          <div className="rounded-3xl bg-gradient-to-br from-emerald-50 to-teal-50 p-6 ring-1 ring-emerald-100 sm:p-7">
+            <h3 className="text-base font-extrabold tracking-tight text-slate-900">
+              Tips gigi sehat + promo tiap bulan
+            </h3>
+            <p className="mt-1 text-sm text-slate-500">
+              Daftarkan email — tanpa spam, berhenti kapan saja.
+            </p>
+            <form
+              className="mt-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (email.trim()) setSubscribed(true);
+              }}
+            >
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="nama@email.com"
+                  aria-label="Email"
+                  className="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+                />
+                <button
+                  type="submit"
+                  aria-label="Berlangganan"
+                  className="btn-shiny-emerald flex shrink-0 items-center gap-1.5 rounded-full px-5 text-sm font-bold text-white"
+                >
+                  Daftar <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+              {subscribed && (
+                <p className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700">
+                  <CheckCircle2 className="h-4 w-4" /> Terdaftar! Cek inbox untuk promo pertama.
+                </p>
+              )}
+            </form>
           </div>
         </div>
 
-        <nav aria-label="Menu footer">
-          <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">Menu</h3>
-          <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm lg:grid-cols-1">
-            {nav.map((n) => (
-              <li key={n.href}>
-                <a href={n.href} className="text-slate-400 transition-colors hover:text-emerald-300">
-                  {n.label}
+        {/* Kolom link */}
+        <div className="mt-12 grid gap-8 border-t border-slate-100 pt-10 sm:grid-cols-3">
+          <nav aria-label="Menu footer">
+            <h4 className="text-xs font-extrabold uppercase tracking-widest text-slate-400">
+              Jelajah
+            </h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {nav.map((n) => (
+                <li key={n.href}>
+                  <a href={n.href} className="font-medium text-slate-600 transition-colors hover:text-emerald-700">
+                    {n.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Layanan footer">
+            <h4 className="text-xs font-extrabold uppercase tracking-widest text-slate-400">
+              Layanan
+            </h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {services.map((s) => (
+                <li key={s.code}>
+                  <a href="#layanan" className="font-medium text-slate-600 transition-colors hover:text-emerald-700">
+                    {s.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h4 className="text-xs font-extrabold uppercase tracking-widest text-slate-400">
+              Hubungi Kami
+            </h4>
+            <ul className="mt-4 space-y-3 text-sm text-slate-600">
+              <li className="flex items-start gap-2.5">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                {site.address}
+              </li>
+              <li>
+                <a href={`mailto:${site.email}`} className="flex items-center gap-2.5 hover:text-emerald-700">
+                  <Mail className="h-4 w-4 shrink-0 text-emerald-600" /> {site.email}
                 </a>
               </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div>
-          <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">Kontak</h3>
-          <ul className="mt-4 space-y-3 text-sm text-slate-400">
-            <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" /> {site.address}
-            </li>
-            <li>
-              <a href={`mailto:${site.email}`} className="flex items-center gap-2 hover:text-emerald-300">
-                <Mail className="h-4 w-4 shrink-0 text-emerald-400" /> {site.email}
-              </a>
-            </li>
-            <li>
-              <a href={site.phoneHref} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-emerald-300">
-                <Phone className="h-4 w-4 shrink-0 text-emerald-400" /> {site.phone}
-              </a>
-            </li>
-          </ul>
+              <li>
+                <a href={site.phoneHref} target="_blank" rel="noreferrer" className="flex items-center gap-2.5 hover:text-emerald-700">
+                  <Phone className="h-4 w-4 shrink-0 text-emerald-600" /> {site.phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Clock className="h-4 w-4 shrink-0 text-emerald-600" /> {site.hours}
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">
-            Info &amp; Promo
-          </h3>
-          <p className="mt-4 text-sm text-slate-400">
-            Daftarkan email untuk tips gigi sehat dan promo scaling tiap bulan.
-          </p>
-          <form
-            className="mt-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (email.trim()) setSubscribed(true);
-            }}
-          >
-            <div className="flex overflow-hidden rounded-xl bg-white/10 ring-1 ring-white/10 focus-within:ring-emerald-500">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email kamu"
-                aria-label="Email"
-                className="w-full bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-slate-500"
-              />
-              <button
-                type="submit"
-                aria-label="Berlangganan"
-                className="btn-shiny-emerald flex items-center gap-1.5 px-4 text-sm font-bold text-white"
-              >
-                <Send className="h-4 w-4" />
-              </button>
-            </div>
-            {subscribed && (
-              <p className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-300">
-                <CheckCircle2 className="h-4 w-4" /> Terdaftar! Cek inbox untuk promo pertama.
-              </p>
-            )}
-          </form>
-        </div>
-      </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-slate-500 sm:flex-row sm:px-6">
+        {/* Bottom bar */}
+        <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-slate-100 py-6 text-xs text-slate-400 sm:flex-row">
           <p>© {new Date().getFullYear()} {site.name}. Semua hak dilindungi.</p>
           <p>Dibuat dengan teliti untuk senyum Indonesia.</p>
         </div>
+      </div>
+
+      {/* Watermark raksasa */}
+      <div aria-hidden="true" className="pointer-events-none select-none overflow-hidden">
+        <p className="-mb-6 bg-gradient-to-b from-emerald-100/70 to-emerald-50/0 bg-clip-text text-center text-[19vw] font-extrabold leading-none tracking-tighter text-transparent lg:-mb-10 lg:text-[13rem]">
+          KataGigi
+        </p>
       </div>
     </footer>
   );

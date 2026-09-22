@@ -16,7 +16,7 @@ export default function Cabang() {
           {branches.map((b, i) => (
             <Reveal key={b.name} delay={(i % 4) * 80}>
               <article
-                className={`flex h-full flex-col rounded-[22px] border p-6 ${
+                className={`flex h-full flex-col rounded-3xl border p-6 ${
                   b.main
                     ? "card-shiny-emerald border-transparent"
                     : "border-slate-100 bg-white shadow-sm"

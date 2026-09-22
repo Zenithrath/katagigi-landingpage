@@ -17,7 +17,7 @@ export default function Tentang() {
           <img
             src="https://images.unsplash.com/photo-1674775372047-27fb6492c9a2?q=80&w=900&auto=format&fit=crop"
             alt="Suasana klinik KataGigi"
-            className="h-72 w-full rounded-[22px] object-cover shadow-lg sm:h-96"
+            className="h-72 w-full rounded-[2rem] object-cover shadow-xl shadow-emerald-900/10 ring-1 ring-slate-900/5 sm:h-96"
             loading="lazy"
           />
         </Reveal>
